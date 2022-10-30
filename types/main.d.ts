@@ -3,7 +3,7 @@ import type { Options } from 'handle-cli-error'
 import type { Info } from 'modern-errors'
 
 /**
- * Options of `modern-errors-http`
+ * Options of `modern-errors-cli`
  */
 export type { Options }
 
