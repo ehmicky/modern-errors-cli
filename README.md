@@ -6,11 +6,22 @@
 
 `modern-errors` plugin to handle errors in CLI modules.
 
-Work in progress!
-
 # Features
 
+- 🖍️ Pretty [colors](#%EF%B8%8F-colors), [icons](#-icon) and [header](#-header)
+- 🚒 [Graceful exit](#-timeout)
+- ⛑️ [Normalize](https://github.com/ehmicky/normalize-exception) invalid errors
+- 🔕 Log verbosity: [message](#-silent), [stack](#-stack), [properties](#-props)
+- 🚨 Custom [exit code](#-exitcode)
+- 💥 Exception-safe
+
+# Screenshot
+
+<img alt="modern-errors-cli screenshot" src="https://raw.githubusercontent.com/ehmicky/handle-cli-error/main/docs/screenshot.png" width="500"/>
+
 # Example
+
+Add the plugin to `modern-errors`.
 
 ```js
 // `errors.js`
@@ -21,8 +32,10 @@ export const AnyError = modernErrors([modernErrorsCli])
 // ...
 ```
 
+Handle errors in the CLI main file.
+
 ```js
-// `main.js`
+#!/usr/bin/env node
 import { AnyError } from './errors.js'
 
 const cliMain = function () {
@@ -30,7 +43,7 @@ const cliMain = function () {
     // ...
   } catch (error) {
     const normalizedError = AnyError.normalize(error)
-    normalizedError.exit()
+    normalizedError.exit() // Logs `error` then exit the process
   }
 }
 
