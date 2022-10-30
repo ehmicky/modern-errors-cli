@@ -18,13 +18,13 @@
     "browser",
     "cli",
     "console",
-    "error",
-    "error-handling",
     "errors",
     "handler",
     "javascript",
     "library",
     "message",
+    "modern-errors",
+    "modern-errors-plugin",
     "monitoring",
     "nodejs",
     "plugins",
@@ -46,9 +46,15 @@
     "lib": "src",
     "test": "test"
   },
-  "dependencies": {},
+  "dependencies": {
+    "handle-cli-error": "^3.0.0"
+  },
   "devDependencies": {
-    "@ehmicky/dev-tasks": "^1.0.97"
+    "@ehmicky/dev-tasks": "^1.0.97",
+    "test-each": "^5.4.1"
+  },
+  "peerDependencies": {
+    "modern-errors": "^4.0.0-beta.0"
   },
   "engines": {
     "node": ">=14.18.0"
