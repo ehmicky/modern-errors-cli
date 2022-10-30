@@ -1,4 +1,5 @@
 import modernErrors from 'modern-errors'
+import modernErrorsCli, { Options } from 'modern-errors-cli'
 import {
   expectType,
   expectAssignable,
@@ -6,26 +7,24 @@ import {
   expectError,
 } from 'tsd'
 
-import plugin, { Options } from './main.js'
-
-const AnyError = modernErrors([plugin])
+const AnyError = modernErrors([modernErrorsCli])
 expectType<void>(AnyError.exit())
 
-modernErrors([plugin], { cli: {} })
+modernErrors([modernErrorsCli], { cli: {} })
 AnyError.exit({})
 expectAssignable<Options>({})
 expectError(AnyError.exit(undefined))
 expectNotAssignable<Options>(undefined)
-expectError(modernErrors([plugin], { cli: true }))
+expectError(modernErrors([modernErrorsCli], { cli: true }))
 expectError(AnyError.exit(true))
 expectNotAssignable<Options>(true)
-expectError(modernErrors([plugin], { cli: { unknown: true } }))
+expectError(modernErrors([modernErrorsCli], { cli: { unknown: true } }))
 expectError(AnyError.exit({ unknown: true }))
 expectNotAssignable<Options>({ unknown: true })
 
-modernErrors([plugin], { cli: { silent: true } })
+modernErrors([modernErrorsCli], { cli: { silent: true } })
 AnyError.exit({ silent: true })
 expectAssignable<Options>({ silent: true })
-expectError(modernErrors([plugin], { cli: { silent: 'true' } }))
+expectError(modernErrors([modernErrorsCli], { cli: { silent: 'true' } }))
 expectError(AnyError.exit({ silent: 'true' }))
 expectNotAssignable<Options>({ silent: 'true' })

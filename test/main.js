@@ -1,6 +1,6 @@
 import test from 'ava'
 import modernErrors from 'modern-errors'
-import CLI_PLUGIN from 'modern-errors-cli'
+import modernErrorsCli from 'modern-errors-cli'
 import { each } from 'test-each'
 
 import { errorExit } from './helpers/main.js'
@@ -9,7 +9,7 @@ const globalOpts = { cli: { timeout: 0 } }
 const exitCode = 5
 const message = 'test'
 
-const AnyError = modernErrors([CLI_PLUGIN], globalOpts)
+const AnyError = modernErrors([modernErrorsCli], globalOpts)
 const UnknownError = AnyError.subclass('UnknownError')
 const OneError = AnyError.subclass('OneError')
 const TwoError = AnyError.subclass('TwoError', { cli: { exitCode } })
