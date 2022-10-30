@@ -26,7 +26,7 @@ Work in progress!
 # Example
 
 [Adding the plugin](https://github.com/ehmicky/modern-errors#adding-plugins) to
-`modern-errors`.
+[`modern-errors`](https://github.com/ehmicky/modern-errors).
 
 ```js
 // `errors.js`
