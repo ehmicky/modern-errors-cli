@@ -8,8 +8,6 @@
 [plugin](https://github.com/ehmicky/modern-errors#plugins-1) to handle errors in
 CLI modules.
 
-Work in progress!
-
 # Features
 
 - 🖍️ Pretty [colors](#%EF%B8%8F-colors), [icons](#-icon) and [header](#-header)
