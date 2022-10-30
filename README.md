@@ -4,7 +4,8 @@
 [![Twitter](https://img.shields.io/badge/%E2%80%8B-twitter-brightgreen.svg?logo=twitter)](https://twitter.com/intent/follow?screen_name=ehmicky)
 [![Medium](https://img.shields.io/badge/%E2%80%8B-medium-brightgreen.svg?logo=medium)](https://medium.com/@ehmicky)
 
-`modern-errors` plugin to handle errors in CLI modules.
+[`modern-errors` plugin](https://github.com/ehmicky/modern-errors#plugins-1) to
+handle errors in CLI modules.
 
 Work in progress!
 
@@ -86,13 +87,15 @@ This never throws. Invalid errors are silently
 
 Options can apply to (in priority order):
 
-- Any error: second argument to [`modernErrors()`](#modernerrorsplugins-options)
+- Any error: second argument to
+  [`modernErrors()`](https://github.com/ehmicky/modern-errors#modernerrorsplugins-options)
 
 ```js
 export const AnyError = modernErrors(plugins, { cli: options })
 ```
 
-- Any error of multiple classes: using `ErrorClass.subclass()`
+- Any error of multiple classes: using
+  [`ErrorClass.subclass()`](https://github.com/ehmicky/modern-errors#anyerrorsubclassname-options)
 
 ```js
 export const SharedError = AnyError.subclass('SharedError', { cli: options })
@@ -102,7 +105,7 @@ export const AuthError = SharedError.subclass('AuthError')
 ```
 
 - Any error of a specific class: second argument to
-  [`AnyError.subclass()`](#anyerrorsubclassname-options)
+  [`AnyError.subclass()`](https://github.com/ehmicky/modern-errors#anyerrorsubclassname-options)
 
 ```js
 export const InputError = AnyError.subclass('InputError', { cli: options })
@@ -114,7 +117,8 @@ export const InputError = AnyError.subclass('InputError', { cli: options })
 throw new InputError('...', { cli: options })
 ```
 
-- A specific call of [`error.exit()`](#errorexitoptions)
+- A specific call of
+  [`error.exit()`](https://github.com/ehmicky/modern-errors#errorexitoptions)
 
 ```js
 error.exit(...args, options)
