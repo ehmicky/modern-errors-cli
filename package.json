@@ -51,17 +51,11 @@
   },
   "devDependencies": {
     "@ehmicky/dev-tasks": "^1.0.97",
-    "modern-errors": "^4.0.0-beta.2",
     "sinon": "^14.0.1",
     "test-each": "^5.4.1"
   },
   "peerDependencies": {
-    "modern-errors": "^4.0.0-beta.2"
-  },
-  "peerDependenciesMeta": {
-    "modern-errors": {
-      "optional": true
-    }
+    "modern-errors": "^4.0.0-beta.3"
   },
   "engines": {
     "node": ">=14.18.0"
