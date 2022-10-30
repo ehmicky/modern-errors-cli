@@ -1,3 +1,9 @@
+# 1.1.0
+
+## Documentation
+
+Improve `README` and add a logo
+
 # 1.0.3
 
 ## Bug fixes
