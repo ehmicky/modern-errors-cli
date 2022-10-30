@@ -13,7 +13,8 @@
 [plugin](https://github.com/ehmicky/modern-errors#plugins-1) to handle errors in
 CLI modules.
 
-This adds `error.exit()` which logs `error` then exits the process.
+This adds [`error.exit()`](#errorexit) which logs `error` then exits the
+process.
 
 # Features
 
@@ -42,8 +43,7 @@ export const AnyError = modernErrors([modernErrorsCli])
 // ...
 ```
 
-Calling [`error.exit()`](#errorexitoptions) in the CLI's top-level error
-handler.
+Calling [`error.exit()`](#errorexit) in the CLI's top-level error handler.
 
 ```js
 #!/usr/bin/env node
@@ -53,8 +53,10 @@ const cliMain = function () {
   try {
     // ...
   } catch (error) {
+    // Ensure `error` is an `Error` instance
     const normalizedError = AnyError.normalize(error)
-    normalizedError.exit() // Logs `error` then exit the process
+    // Logs `error` then exits the process
+    normalizedError.exit()
   }
 }
 
