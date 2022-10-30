@@ -36,7 +36,8 @@ export const AnyError = modernErrors([modernErrorsCli])
 // ...
 ```
 
-Calling [`error.exit`](#errorexitoptions) in the CLI top-level error handler.
+Calling [`error.exit()`](#errorexitoptions) in the CLI's top-level error
+handler.
 
 ```js
 #!/usr/bin/env node
@@ -73,9 +74,8 @@ _Type_: `Plugin`
 Plugin object to
 [pass to `modernErrors()`](https://github.com/ehmicky/modern-errors#adding-plugins).
 
-## error.exit(options?)
+## error.exit()
 
-`options` [`Options?`](#options)\
 _Return value_: `void`
 
 Logs `error` on the console (`stderr`) then exits the process.
