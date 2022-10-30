@@ -1,3 +1,8 @@
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/ehmicky/design/main/modern-errors/modern-errors_dark.svg"/>
+  <img alt="modern-errors logo" src="https://raw.githubusercontent.com/ehmicky/design/main/modern-errors/modern-errors.svg" width="600"/>
+</picture>
+
 [![Codecov](https://img.shields.io/codecov/c/github/ehmicky/modern-errors-cli.svg?label=tested&logo=codecov)](https://codecov.io/gh/ehmicky/modern-errors-cli)
 [![TypeScript](https://img.shields.io/badge/-typed-brightgreen?logo=typescript&colorA=gray&logoColor=0096ff)](/types/main.d.ts)
 [![Node](https://img.shields.io/node/v/modern-errors-cli.svg?logo=node.js&logoColor=66cc33)](https://www.npmjs.com/package/modern-errors-cli)
@@ -7,6 +12,8 @@
 [`modern-errors`](https://github.com/ehmicky/modern-errors)
 [plugin](https://github.com/ehmicky/modern-errors#plugins-1) to handle errors in
 CLI modules.
+
+This adds `error.exit()` which logs `error` then exits the process.
 
 # Features
 
@@ -83,50 +90,6 @@ This never throws. Invalid errors are silently
 ## Options
 
 _Type_: `object`
-
-Options can apply to (in priority order):
-
-- Any error: second argument to
-  [`modernErrors()`](https://github.com/ehmicky/modern-errors#modernerrorsplugins-options)
-
-```js
-export const AnyError = modernErrors(plugins, { cli: { ...options } })
-```
-
-- Any error of multiple classes: using
-  [`ErrorClass.subclass()`](https://github.com/ehmicky/modern-errors#anyerrorsubclassname-options)
-
-```js
-export const SharedError = AnyError.subclass('SharedError', {
-  cli: { ...options },
-})
-
-export const InputError = SharedError.subclass('InputError')
-export const AuthError = SharedError.subclass('AuthError')
-```
-
-- Any error of a specific class: second argument to
-  [`AnyError.subclass()`](https://github.com/ehmicky/modern-errors#anyerrorsubclassname-options)
-
-```js
-export const InputError = AnyError.subclass('InputError', {
-  cli: { ...options },
-})
-```
-
-- A specific error: second argument to the error's constructor
-
-```js
-throw new InputError('...', { cli: { ...options } })
-```
-
-- A specific
-  [`error.exit()`](https://github.com/ehmicky/modern-errors#errorexitoptions)
-  call
-
-```js
-error.exit(...args, { ...options })
-```
 
 ### 🚨 exitCode
 
@@ -205,6 +168,50 @@ Special values:
 - `0`: Exits right away, without waiting for ongoing tasks
 - `Number.POSITIVE_INFINITY`: Waits for ongoing tasks forever, without timing
   out
+
+## Configuration
+
+[Options](#options) can apply to (in priority order):
+
+- Any error: second argument to
+  [`modernErrors()`](https://github.com/ehmicky/modern-errors#modernerrorsplugins-options)
+
+```js
+export const AnyError = modernErrors(plugins, { cli: { ...options } })
+```
+
+- Any error of multiple classes: using
+  [`ErrorClass.subclass()`](https://github.com/ehmicky/modern-errors#anyerrorsubclassname-options)
+
+```js
+export const SharedError = AnyError.subclass('SharedError', {
+  cli: { ...options },
+})
+
+export const InputError = SharedError.subclass('InputError')
+export const AuthError = SharedError.subclass('AuthError')
+```
+
+- Any error of a specific class: second argument to
+  [`AnyError.subclass()`](https://github.com/ehmicky/modern-errors#anyerrorsubclassname-options)
+
+```js
+export const InputError = AnyError.subclass('InputError', {
+  cli: { ...options },
+})
+```
+
+- A specific error: second argument to the error's constructor
+
+```js
+throw new InputError('...', { cli: { ...options } })
+```
+
+- A specific [`error.exit()`](#errorexit) call
+
+```js
+error.exit(...args, { ...options })
+```
 
 # Related projects
 
