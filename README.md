@@ -35,7 +35,6 @@ process.
 [`modern-errors`](https://github.com/ehmicky/modern-errors).
 
 ```js
-// `errors.js`
 import modernErrors from 'modern-errors'
 import modernErrorsCli from 'modern-errors-cli'
 
@@ -46,9 +45,6 @@ export const AnyError = modernErrors([modernErrorsCli])
 Calling [`error.exit()`](#errorexit) in the CLI's top-level error handler.
 
 ```js
-#!/usr/bin/env node
-import { AnyError } from './errors.js'
-
 const cliMain = function () {
   try {
     // ...
