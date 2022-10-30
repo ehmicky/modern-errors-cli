@@ -9,7 +9,7 @@
   "types": "./build/types/main.d.ts",
   "main": "./build/src/main.js",
   "files": [
-    "build/src/**/*.{js,d.ts,json}",
+    "build/src/**/*.{js,json}",
     "build/types/**/*.d.ts"
   ],
   "scripts": {
