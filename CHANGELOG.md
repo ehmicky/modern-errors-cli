@@ -1,14 +1,20 @@
+# 1.0.3
+
+## Bug fixes
+
+Fix `package.json`
+
 # 1.0.2
 
 ## Bug fixes
 
-Fix `package.json`.
+Fix `package.json`
 
 # 1.0.1
 
 ## Bug fixes
 
-Fix `package.json`.
+Fix `package.json`
 
 # 1.0.0
 
