@@ -6,6 +6,8 @@
 
 `modern-errors` plugin to handle errors in CLI modules.
 
+Work in progress!
+
 # Features
 
 - 🖍️ Pretty [colors](#%EF%B8%8F-colors), [icons](#-icon) and [header](#-header)
@@ -21,7 +23,8 @@
 
 # Example
 
-Add the plugin to `modern-errors`.
+[Add the plugin](https://github.com/ehmicky/modern-errors#adding-plugins) to
+`modern-errors`.
 
 ```js
 // `errors.js`
@@ -32,7 +35,7 @@ export const AnyError = modernErrors([modernErrorsCli])
 // ...
 ```
 
-Handle errors in the CLI main file.
+Top-level error handler in the CLI main file.
 
 ```js
 #!/usr/bin/env node
@@ -80,6 +83,42 @@ This never throws. Invalid errors are silently
 [normalized](https://github.com/ehmicky/normalize-exception).
 
 ### Options
+
+Options can apply to (in priority order):
+
+- Any error: second argument to [`modernErrors()`](#modernerrorsplugins-options)
+
+```js
+export const AnyError = modernErrors(plugins, { cli: options })
+```
+
+- Any error of multiple classes: using `ErrorClass.subclass()`
+
+```js
+export const SharedError = AnyError.subclass('SharedError', { cli: options })
+
+export const InputError = SharedError.subclass('InputError')
+export const AuthError = SharedError.subclass('AuthError')
+```
+
+- Any error of a specific class: second argument to
+  [`AnyError.subclass()`](#anyerrorsubclassname-options)
+
+```js
+export const InputError = AnyError.subclass('InputError', { cli: options })
+```
+
+- A specific error: second argument to the error's constructor
+
+```js
+throw new InputError('...', { cli: options })
+```
+
+- A specific call of [`error.exit()`](#errorexitoptions)
+
+```js
+error.exit(...args, options)
+```
 
 #### 🚨 exitCode
 
