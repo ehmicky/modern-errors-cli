@@ -1,3 +1,9 @@
+# 1.3.1
+
+## Types
+
+- Fix bug with TypeScript types
+
 # 1.3.0
 
 ## Features

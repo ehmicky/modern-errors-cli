@@ -13,7 +13,7 @@ export type { Options }
 declare const plugin: {
   name: 'cli'
   getOptions: (input: Options) => Options
-  staticMethods: {
+  instanceMethods: {
     /**
      * Logs `error` on the console (`stderr`) then exits the process.
      *
@@ -36,7 +36,7 @@ declare const plugin: {
      * cliMain()
      * ```
      */
-    exit: (info: Info['staticMethods']) => void
+    exit: (info: Info['instanceMethods']) => void
   }
 }
 export default plugin
