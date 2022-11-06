@@ -1,3 +1,10 @@
+# 1.3.0
+
+## Features
+
+- Upgrade to
+  [`modern-errors@v4`](https://github.com/ehmicky/modern-errors/releases/tag/4.0.0)
+
 # 1.2.0
 
 ## Documentation
