@@ -14,14 +14,12 @@ const getOptions = function (options = {}) {
 // incrementing from there.
 //  - If some of the classes define their `exitCode`, it does not change the
 //    default `exitCode` of others
-// Stack traces and error properties are displayed by default if `showStack`
-// is `true`.
+// Stack traces and error properties are displayed by default.
 const exit = function ({
-  showStack,
   ErrorClasses,
   error,
   options: {
-    stack = showStack,
+    stack = true,
     exitCode = Object.keys(ErrorClasses).indexOf(error.name) + 1,
     ...options
   },
