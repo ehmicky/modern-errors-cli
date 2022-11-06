@@ -10,7 +10,7 @@
 [![Medium](https://img.shields.io/badge/%E2%80%8B-medium-brightgreen.svg?logo=medium)](https://medium.com/@ehmicky)
 
 [`modern-errors`](https://github.com/ehmicky/modern-errors)
-[plugin](https://github.com/ehmicky/modern-errors#plugins-1) to handle errors in
+[plugin](https://github.com/ehmicky/modern-errors#-plugins) to handle errors in
 CLI modules.
 
 This adds [`error.exit()`](#errorexit) which logs `error` then exits the
@@ -105,9 +105,9 @@ _Type_: `boolean`
 Whether to log the error's stack trace.
 
 By default, this is `true` if the error (or one of its
-[inner](https://github.com/ehmicky/modern-errors/README.md#wrap-errors) errors)
+[inner](https://github.com/ehmicky/modern-errors/README.md#-wrap-errors) errors)
 is
-[_unknown_](https://github.com/ehmicky/modern-errors/README.md#unknown-errors),
+[_unknown_](https://github.com/ehmicky/modern-errors/README.md#-unknown-errors),
 and `false` otherwise.
 
 ### 📢 props
