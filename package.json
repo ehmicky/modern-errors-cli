@@ -50,7 +50,7 @@
     "test": "test"
   },
   "dependencies": {
-    "handle-cli-error": "^3.0.1"
+    "handle-cli-error": "^3.1.0"
   },
   "devDependencies": {
     "@ehmicky/dev-tasks": "^1.0.102",
