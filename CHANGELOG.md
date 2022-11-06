@@ -1,3 +1,9 @@
+# 1.3.2
+
+## Bug fixes
+
+- Fix `stack` option's default value
+
 # 1.3.1
 
 ## Types
