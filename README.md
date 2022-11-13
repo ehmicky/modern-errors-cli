@@ -177,7 +177,7 @@ Special values:
 ```js
 export const BaseError = ModernError.subclass('BaseError', {
   plugins: [modernErrorsCli],
-  cli: { ...options },
+  cli: options,
 })
 ```
 
@@ -185,22 +185,20 @@ export const BaseError = ModernError.subclass('BaseError', {
   [`ErrorClass.subclass()`](https://github.com/ehmicky/modern-errors#options-1)
 
 ```js
-export const InputError = BaseError.subclass('InputError', {
-  cli: { ...options },
-})
+export const InputError = BaseError.subclass('InputError', { cli: options })
 ```
 
 - A specific error: second argument to
   [`new ErrorClass()`](https://github.com/ehmicky/modern-errors#options-3)
 
 ```js
-throw new InputError('...', { cli: { ...options } })
+throw new InputError('...', { cli: options })
 ```
 
 - A specific [`BaseError.exit(error)`](#baseerrorexiterror) call
 
 ```js
-BaseError.exit(error, { ...options })
+BaseError.exit(error, options)
 ```
 
 # Related projects
