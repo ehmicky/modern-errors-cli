@@ -26,7 +26,7 @@ declare const plugin: {
      *   try {
      *     // ...
      *   } catch (error) {
-     *     // Ensure `error` is an `Error` instance
+     *     // Ensure `error` is a `BaseError` instance
      *     const normalizedError = BaseError.normalize(error)
      *     // Logs `error` then exits the process
      *     normalizedError.exit()
