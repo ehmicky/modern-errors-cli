@@ -10,21 +10,9 @@ const getOptions = function (options = {}) {
   return options
 }
 
-// The default value of `exitCode` is 1 for the first declared class, then
-// incrementing from there.
-//  - If some of the classes define their `exitCode`, it does not change the
-//    default `exitCode` of others
 // Stack traces and error properties are displayed by default.
-const exit = function ({
-  ErrorClasses,
-  error,
-  options: {
-    stack = true,
-    exitCode = Object.keys(ErrorClasses).indexOf(error.name) + 1,
-    ...options
-  },
-}) {
-  handleCliError(error, { ...options, stack, exitCode })
+const exit = function ({ error, options: { stack = true, ...options } }) {
+  handleCliError(error, { ...options, stack })
 }
 
 export default {

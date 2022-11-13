@@ -1,21 +1,18 @@
 import test from 'ava'
-import modernErrors from 'modern-errors'
+import ModernError from 'modern-errors'
 import modernErrorsCli from 'modern-errors-cli'
 import { each } from 'test-each'
 
 import { errorExit } from './helpers/main.js'
 
-const globalOpts = { cli: { timeout: 0 } }
 const exitCode = 5
 const message = 'test'
 
-const BaseError = modernErrors([modernErrorsCli], globalOpts)
-const UnknownError = BaseError.subclass('UnknownError')
-const OneError = BaseError.subclass('OneError')
-const TwoError = BaseError.subclass('TwoError', { cli: { exitCode } })
-const ThreeError = BaseError.subclass('ThreeError')
-
-const error = new OneError(message)
+const BaseError = ModernError.subclass('BaseError', {
+  plugins: [modernErrorsCli],
+  cli: { timeout: 0 },
+})
+const error = new BaseError(message)
 
 each(
   [true, { timeout: 'true' }, { unknown: true }, { classes: {} }],
@@ -30,16 +27,19 @@ test.serial('Call process.exit()', (t) => {
   t.true(Number.isInteger(errorExit(error).exitCode))
 })
 
-test.serial('Can pass "exitCode"', (t) => {
+test.serial('Can pass "exitCode" as instance option', (t) => {
   t.is(errorExit(error, { exitCode }).exitCode, exitCode)
 })
 
-test.serial('"exitCode" defaults to incrementing number', (t) => {
-  t.is(errorExit(new UnknownError('')).exitCode, 1)
-  t.is(errorExit(new OneError('')).exitCode, 2)
-  t.is(errorExit(new TwoError('')).exitCode, exitCode)
-  // eslint-disable-next-line no-magic-numbers
-  t.is(errorExit(new ThreeError('')).exitCode, 4)
+test.serial('Can pass "exitCode" as class option', (t) => {
+  const ExitCodeError = BaseError.subclass('ExitCodeError', {
+    cli: { exitCode },
+  })
+  t.is(errorExit(new ExitCodeError('')).exitCode, exitCode)
+})
+
+test.serial('"exitCode" defaults to 1', (t) => {
+  t.is(errorExit(new BaseError('')).exitCode, 1)
 })
 
 test.serial('Can pass "stack"', (t) => {

@@ -4,6 +4,7 @@
 
 - [`modern-errors@5`](https://github.com/ehmicky/modern-errors/releases/tag/5.0.0)
   is now required
+- The default value for the [`exitCode` option](README.md#-exitcode) is now `1`
 
 # 1.4.0
 

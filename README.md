@@ -95,12 +95,12 @@ _Type_: `object`
 
 ### 🚨 exitCode
 
-_Type_: `integer`
+_Type_: `integer`\
+_Default_: `1`
 
 Process [exit code](https://en.wikipedia.org/wiki/Exit_status).
 
-By default, each error class has its own exit code: `1` for the first one
-declared, `2` for the next one, and so on.
+Note: when passing invalid `options`, the exit code is always `125`.
 
 ### 📕 stack
 
