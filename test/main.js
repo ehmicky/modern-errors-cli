@@ -3,7 +3,7 @@ import ModernError from 'modern-errors'
 import modernErrorsCli from 'modern-errors-cli'
 import { each } from 'test-each'
 
-import { errorExit } from './helpers/main.js'
+import { testErrorExit } from './helpers/main.js'
 
 const exitCode = 5
 const message = 'test'
@@ -13,12 +13,13 @@ const BaseError = ModernError.subclass('BaseError', {
   cli: { timeout: 0 },
 })
 const error = new BaseError(message)
+const errorExit = testErrorExit.bind(undefined, BaseError)
 
 each(
   [true, { timeout: 'true' }, { unknown: true }, { classes: {} }],
-  ({ title }, cli) => {
+  ({ title }, options) => {
     test(`Options are validated | ${title}`, (t) => {
-      t.throws(error.exit.bind(error, cli))
+      t.throws(errorExit.bind(undefined, error, options))
     })
   },
 )

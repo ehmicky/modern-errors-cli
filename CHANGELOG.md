@@ -1,3 +1,11 @@
+# 2.2.0
+
+## Features
+
+- `error.exit()` has been renamed to
+  [`BaseError.exit(error)`](README.md#baseerrorexiterror). `error.exit()` is
+  deprecated but still supported.
+
 # 2.1.0
 
 ## Features

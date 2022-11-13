@@ -9,13 +9,13 @@ sinon.stub(process, 'exit')
 // `handle-cli-error` use global variables `process.exitCode`, `process.exit()`
 // and `console.error()` so we need to mock them.
 // It also relies on timeout, which we need to mock as well.
-export const errorExit = function (error, options) {
+export const testErrorExit = function (BaseError, error, options) {
   try {
     // eslint-disable-next-line no-restricted-globals, no-console
     console.error.resetHistory()
     process.exit.resetHistory()
 
-    error.exit(options)
+    BaseError.exit(error, options)
 
     // eslint-disable-next-line no-restricted-globals, no-console
     const consoleArg = getStubArg(console.error)

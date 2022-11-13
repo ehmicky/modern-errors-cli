@@ -11,17 +11,17 @@ const BaseError = ModernError.subclass('BaseError', {
   plugins: [modernErrorsCli],
 })
 const error = new BaseError('')
-expectType<void>(error.exit())
+expectType<void>(BaseError.exit(error))
 
 ModernError.subclass('TestError', { plugins: [modernErrorsCli], cli: {} })
-error.exit({})
+BaseError.exit(error, {})
 expectAssignable<Options>({})
-expectError(error.exit(undefined))
+expectError(BaseError.exit(error, undefined))
 expectNotAssignable<Options>(undefined)
 expectError(
   ModernError.subclass('TestError', { plugins: [modernErrorsCli], cli: true }),
 )
-expectError(error.exit(true))
+expectError(BaseError.exit(error, true))
 expectNotAssignable<Options>(true)
 expectError(
   ModernError.subclass('TestError', {
@@ -29,14 +29,14 @@ expectError(
     cli: { unknown: true },
   }),
 )
-expectError(error.exit({ unknown: true }))
+expectError(BaseError.exit(error, { unknown: true }))
 expectNotAssignable<Options>({ unknown: true })
 
 ModernError.subclass('TestError', {
   plugins: [modernErrorsCli],
   cli: { silent: true },
 })
-error.exit({ silent: true })
+BaseError.exit(error, { silent: true })
 expectAssignable<Options>({ silent: true })
 expectError(
   ModernError.subclass('TestError', {
@@ -44,5 +44,5 @@ expectError(
     cli: { silent: 'true' },
   }),
 )
-expectError(error.exit({ silent: 'true' }))
+expectError(BaseError.exit(error, { silent: 'true' }))
 expectNotAssignable<Options>({ silent: 'true' })

@@ -13,8 +13,8 @@
 [plugin](https://github.com/ehmicky/modern-errors#-plugins) to handle errors in
 CLI modules.
 
-This adds [`error.exit()`](#errorexit) which logs `error` then exits the
-process.
+This adds [`BaseError.exit(error)`](#baseerrorexiterror) which logs `error` then
+exits the process.
 
 # Features
 
@@ -44,17 +44,16 @@ export const BaseError = ModernError.subclass('BaseError', {
 // ...
 ```
 
-Calling [`error.exit()`](#errorexit) in the CLI's top-level error handler.
+Calling [`BaseError.exit(error)`](#baseerrorexiterror) in the CLI's top-level
+error handler.
 
 ```js
 const cliMain = function () {
   try {
     // ...
   } catch (error) {
-    // Ensure `error` is a `BaseError` instance
-    const normalizedError = BaseError.normalize(error)
     // Logs `error` then exits the process
-    normalizedError.exit()
+    BaseError.exit(error)
   }
 }
 
@@ -82,7 +81,9 @@ Plugin object to pass to the
 [`plugins` option](https://github.com/ehmicky/modern-errors#adding-plugins) of
 `ErrorClass.subclass()`.
 
-## error.exit()
+## BaseError.exit(error)
+
+`error`: `any`
 
 Logs `error` on the console (`stderr`) then exits the process.
 
@@ -196,10 +197,10 @@ export const InputError = BaseError.subclass('InputError', {
 throw new InputError('...', { cli: { ...options } })
 ```
 
-- A specific [`error.exit()`](#errorexit) call
+- A specific [`BaseError.exit(error)`](#baseerrorexiterror) call
 
 ```js
-error.exit(...args, { ...options })
+BaseError.exit(error, ...args, { ...options })
 ```
 
 # Related projects
