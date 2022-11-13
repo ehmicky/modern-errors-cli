@@ -200,7 +200,7 @@ throw new InputError('...', { cli: { ...options } })
 - A specific [`BaseError.exit(error)`](#baseerrorexiterror) call
 
 ```js
-BaseError.exit(error, ...args, { ...options })
+BaseError.exit(error, { ...options })
 ```
 
 # Related projects
