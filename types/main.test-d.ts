@@ -7,8 +7,8 @@ import {
   expectError,
 } from 'tsd'
 
-const AnyError = modernErrors([modernErrorsCli])
-const error = new AnyError('', { cause: '' })
+const BaseError = modernErrors([modernErrorsCli])
+const error = new BaseError('', { cause: '' })
 expectType<void>(error.exit())
 
 modernErrors([modernErrorsCli], { cli: {} })

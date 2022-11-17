@@ -9,11 +9,11 @@ const globalOpts = { cli: { timeout: 0 } }
 const exitCode = 5
 const message = 'test'
 
-const AnyError = modernErrors([modernErrorsCli], globalOpts)
-const UnknownError = AnyError.subclass('UnknownError')
-const OneError = AnyError.subclass('OneError')
-const TwoError = AnyError.subclass('TwoError', { cli: { exitCode } })
-const ThreeError = AnyError.subclass('ThreeError')
+const BaseError = modernErrors([modernErrorsCli], globalOpts)
+const UnknownError = BaseError.subclass('UnknownError')
+const OneError = BaseError.subclass('OneError')
+const TwoError = BaseError.subclass('TwoError', { cli: { exitCode } })
+const ThreeError = BaseError.subclass('ThreeError')
 
 const error = new OneError(message)
 

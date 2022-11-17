@@ -38,7 +38,7 @@ process.
 import modernErrors from 'modern-errors'
 import modernErrorsCli from 'modern-errors-cli'
 
-export const AnyError = modernErrors([modernErrorsCli])
+export const BaseError = modernErrors([modernErrorsCli])
 // ...
 ```
 
@@ -50,7 +50,7 @@ const cliMain = function () {
     // ...
   } catch (error) {
     // Ensure `error` is an `Error` instance
-    const normalizedError = AnyError.normalize(error)
+    const normalizedError = BaseError.normalize(error)
     // Logs `error` then exits the process
     normalizedError.exit()
   }
@@ -171,14 +171,14 @@ Special values:
   [`modernErrors()`](https://github.com/ehmicky/modern-errors#modernerrorsplugins-options)
 
 ```js
-export const AnyError = modernErrors(plugins, { cli: { ...options } })
+export const BaseError = modernErrors(plugins, { cli: { ...options } })
 ```
 
 - Any error of multiple classes: using
-  [`ErrorClass.subclass()`](https://github.com/ehmicky/modern-errors#anyerrorsubclassname-options)
+  [`ErrorClass.subclass()`](https://github.com/ehmicky/modern-errors#baseerrorsubclassname-options)
 
 ```js
-export const SharedError = AnyError.subclass('SharedError', {
+export const SharedError = BaseError.subclass('SharedError', {
   cli: { ...options },
 })
 
@@ -187,10 +187,10 @@ export const AuthError = SharedError.subclass('AuthError')
 ```
 
 - Any error of a specific class: second argument to
-  [`AnyError.subclass()`](https://github.com/ehmicky/modern-errors#anyerrorsubclassname-options)
+  [`BaseError.subclass()`](https://github.com/ehmicky/modern-errors#baseerrorsubclassname-options)
 
 ```js
-export const InputError = AnyError.subclass('InputError', {
+export const InputError = BaseError.subclass('InputError', {
   cli: { ...options },
 })
 ```
