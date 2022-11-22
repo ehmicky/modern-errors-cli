@@ -206,7 +206,7 @@ BaseError.exit(error, options)
 - [`handle-cli-error`](https://github.com/ehmicky/handle-cli-error): 💣 Error
   handler for CLI applications 💥
 - [`modern-errors`](https://github.com/ehmicky/modern-errors): Handle errors
-  like it's 2022 🔮
+  like it's 2023 🔮
 - [`modern-errors-process`](https://github.com/ehmicky/modern-errors-process):
   Handle process errors
 - [`modern-errors-bugs`](https://github.com/ehmicky/modern-errors-bugs): Print
