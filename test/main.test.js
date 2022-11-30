@@ -3,7 +3,7 @@ import ModernError from 'modern-errors'
 import modernErrorsCli from 'modern-errors-cli'
 import { each } from 'test-each'
 
-import { testErrorExit } from './helpers/main.js'
+import { testErrorExit } from './helpers/main.test.js'
 
 const exitCode = 5
 const message = 'test'
