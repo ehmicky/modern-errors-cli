@@ -1,5 +1,4 @@
 import type { Options } from 'handle-cli-error'
-
 import type { Info } from 'modern-errors'
 
 /**

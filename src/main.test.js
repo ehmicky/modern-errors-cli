@@ -2,9 +2,10 @@ import process from 'node:process'
 
 import test from 'ava'
 import ModernError from 'modern-errors'
-import modernErrorsCli from 'modern-errors-cli'
 import sinon from 'sinon'
 import { each } from 'test-each'
+
+import modernErrorsCli from 'modern-errors-cli'
 
 // eslint-disable-next-line no-restricted-globals
 sinon.stub(console, 'error')
