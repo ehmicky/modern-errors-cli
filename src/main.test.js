@@ -1,9 +1,37 @@
+import process from 'node:process'
+
 import test from 'ava'
 import ModernError from 'modern-errors'
 import modernErrorsCli from 'modern-errors-cli'
+import sinon from 'sinon'
 import { each } from 'test-each'
 
-import { testErrorExit } from './helpers/main.test.js'
+// eslint-disable-next-line no-restricted-globals
+sinon.stub(console, 'error')
+sinon.stub(process, 'exit')
+
+// `handle-cli-error` use global variables `process.exitCode`, `process.exit()`
+// and `console.error()` so we need to mock them.
+// It also relies on timeout, which we need to mock as well.
+const errorExit = function (errorArg, options) {
+  try {
+    // eslint-disable-next-line no-restricted-globals, no-console
+    console.error.resetHistory()
+    process.exit.resetHistory()
+
+    BaseError.exit(errorArg, options)
+
+    // eslint-disable-next-line no-restricted-globals, no-console
+    const consoleArg = getStubArg(console.error)
+    return { consoleArg, exitCode: process.exitCode }
+  } finally {
+    process.exitCode = undefined
+  }
+}
+
+const getStubArg = function ({ args: [[firstCallFirstArg] = []] }) {
+  return firstCallFirstArg
+}
 
 const exitCode = 5
 const message = 'test'
@@ -13,7 +41,6 @@ const BaseError = ModernError.subclass('BaseError', {
   cli: { timeout: 0 },
 })
 const error = new BaseError(message)
-const errorExit = testErrorExit.bind(undefined, BaseError)
 
 each(
   [true, { timeout: 'true' }, { unknown: true }, { classes: {} }],
