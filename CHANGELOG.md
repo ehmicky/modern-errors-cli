@@ -1,3 +1,9 @@
+# 2.3.0
+
+## Features
+
+- Migrate to TypeScript
+
 # 2.2.0
 
 ## Features
