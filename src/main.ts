@@ -45,10 +45,8 @@ const exit = ({ error, options }: Info['instanceMethods']) => {
 /**
  * `modern-errors-cli` plugin
  */
-const modernErrorsCli = {
+export default {
   name: 'cli' as const,
   getOptions,
   instanceMethods: { exit },
 } satisfies Plugin
-
-export default modernErrorsCli
