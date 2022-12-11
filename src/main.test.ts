@@ -2,35 +2,36 @@ import process from 'node:process'
 
 import test from 'ava'
 import ModernError from 'modern-errors'
-import sinon from 'sinon'
+import sinon, { type SinonStub } from 'sinon'
 import { each } from 'test-each'
 
-import modernErrorsCli from 'modern-errors-cli'
+import modernErrorsCli, { type Options } from 'modern-errors-cli'
+
+type ConsoleError = SinonStub<[string]>
 
 // eslint-disable-next-line no-restricted-globals
-sinon.stub(console, 'error')
-sinon.stub(process, 'exit')
+const consoleError = sinon.stub(console, 'error') as ConsoleError
+const processExit = sinon.stub(process, 'exit')
 
 // `handle-cli-error` use global variables `process.exitCode`, `process.exit()`
 // and `console.error()` so we need to mock them.
 // It also relies on timeout, which we need to mock as well.
-const errorExit = (errorArg, options) => {
+const errorExit = (errorArg: Error, options?: Options) => {
   try {
-    // eslint-disable-next-line no-restricted-globals, no-console
-    console.error.resetHistory()
-    process.exit.resetHistory()
+    consoleError.resetHistory()
+    processExit.resetHistory()
 
     BaseError.exit(errorArg, options)
 
-    // eslint-disable-next-line no-restricted-globals, no-console
-    const consoleArg = getStubArg(console.error)
+    const consoleArg = getStubArg(consoleError)
     return { consoleArg, exitCode: process.exitCode }
   } finally {
     process.exitCode = undefined
   }
 }
 
-const getStubArg = ({ args: [[firstCallFirstArg] = []] }) => firstCallFirstArg
+const getStubArg = ({ args: [[firstCallFirstArg] = ['']] }: ConsoleError) =>
+  firstCallFirstArg
 
 const exitCode = 5
 const message = 'test'
@@ -45,7 +46,7 @@ each(
   [true, { timeout: 'true' }, { unknown: true }, { classes: {} }],
   ({ title }, options) => {
     test(`Options are validated | ${title}`, (t) => {
-      t.throws(errorExit.bind(undefined, error, options))
+      t.throws(errorExit.bind(undefined, error, options as never))
     })
   },
 )
@@ -78,5 +79,5 @@ test.serial('"stack" defaults to true', (t) => {
 })
 
 test.serial('Can pass any options', (t) => {
-  t.is(errorExit(error, { silent: true }).consoleArg, undefined)
+  t.is(errorExit(error, { silent: true }).consoleArg, '')
 })

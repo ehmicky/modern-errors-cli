@@ -12,7 +12,6 @@ expectType<void>(BaseError.exit(error))
 ModernError.subclass('TestError', { plugins: [modernErrorsCli], cli: {} })
 BaseError.exit(error, {})
 expectAssignable<Options>({})
-// @ts-expect-error
 BaseError.exit(error, undefined)
 expectNotAssignable<Options>(undefined)
 // @ts-expect-error
