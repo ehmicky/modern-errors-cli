@@ -55,7 +55,7 @@
     "handle-cli-error": "^3.1.0"
   },
   "devDependencies": {
-    "@ehmicky/dev-tasks": "^2.0.51",
+    "@ehmicky/dev-tasks": "^2.0.52",
     "sinon": "^15.0.0",
     "test-each": "^5.6.0"
   },
