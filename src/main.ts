@@ -1,5 +1,5 @@
 import handleCliError, { validateOptions, type Options } from 'handle-cli-error'
-import type { Info } from 'modern-errors'
+import type { Info, Plugin } from 'modern-errors'
 
 /**
  * Options of `modern-errors-cli`
@@ -38,7 +38,7 @@ const getOptions = (options: Options = {}) => {
  */
 // Stack traces and error properties are displayed by default.
 const exit = ({ error, options }: Info['instanceMethods']) => {
-  const { stack = true, ...optionsA } = options as Options
+  const { stack = true, ...optionsA }: Options = options
   handleCliError(error, { ...optionsA, stack })
 }
 
@@ -49,6 +49,6 @@ const modernErrorsCli = {
   name: 'cli' as const,
   getOptions,
   instanceMethods: { exit },
-}
+} satisfies Plugin
 
 export default modernErrorsCli

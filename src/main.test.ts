@@ -46,7 +46,8 @@ each(
   [true, { timeout: 'true' }, { unknown: true }, { classes: {} }],
   ({ title }, options) => {
     test(`Options are validated | ${title}`, (t) => {
-      t.throws(errorExit.bind(undefined, error, options as never))
+      // @ts-expect-error Type checking should fail due to invalid options
+      t.throws(errorExit.bind(undefined, error, options))
     })
   },
 )
