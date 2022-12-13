@@ -21,7 +21,7 @@ declare const plugin: {
      *
      * @example
      * ```js
-     * const cliMain = function () {
+     * const cliMain = () => {
      *   try {
      *     // ...
      *   } catch (error) {

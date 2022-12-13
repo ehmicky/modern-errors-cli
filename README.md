@@ -49,7 +49,7 @@ Calling [`BaseError.exit(error)`](#baseerrorexiterror) in the CLI's top-level
 error handler.
 
 ```js
-const cliMain = function () {
+const cliMain = () => {
   try {
     // ...
   } catch (error) {

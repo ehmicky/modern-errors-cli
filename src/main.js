@@ -1,6 +1,6 @@
 import handleCliError, { validateOptions } from 'handle-cli-error'
 
-const getOptions = function (options = {}) {
+const getOptions = (options = {}) => {
   validateOptions(options)
 
   if (options.classes !== undefined) {
@@ -11,7 +11,7 @@ const getOptions = function (options = {}) {
 }
 
 // Stack traces and error properties are displayed by default.
-const exit = function ({ error, options: { stack = true, ...options } }) {
+const exit = ({ error, options: { stack = true, ...options } }) => {
   handleCliError(error, { ...options, stack })
 }
 
