@@ -36,7 +36,6 @@ exits the process.
 
 ```js
 import ModernError from 'modern-errors'
-
 import modernErrorsCli from 'modern-errors-cli'
 
 export const BaseError = ModernError.subclass('BaseError', {
