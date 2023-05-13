@@ -6,7 +6,6 @@ import modernErrorsCli, { type Options } from 'modern-errors-cli'
 import sinon, { type SinonStub } from 'sinon'
 import { each } from 'test-each'
 
-
 type ConsoleError = SinonStub<[string]>
 
 // eslint-disable-next-line no-restricted-globals

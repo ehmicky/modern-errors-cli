@@ -2,7 +2,6 @@ import ModernError from 'modern-errors'
 import modernErrorsCli, { type Options } from 'modern-errors-cli'
 import { expectType, expectAssignable, expectNotAssignable } from 'tsd'
 
-
 const BaseError = ModernError.subclass('BaseError', {
   plugins: [modernErrorsCli],
 })
