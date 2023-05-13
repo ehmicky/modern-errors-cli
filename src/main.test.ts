@@ -2,9 +2,10 @@ import process from 'node:process'
 
 import test from 'ava'
 import ModernError from 'modern-errors'
-import modernErrorsCli, { type Options } from 'modern-errors-cli'
 import sinon, { type SinonStub } from 'sinon'
 import { each } from 'test-each'
+
+import modernErrorsCli, { type Options } from 'modern-errors-cli'
 
 type ConsoleError = SinonStub<[string]>
 
