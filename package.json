@@ -59,7 +59,7 @@
   "devDependencies": {
     "@ehmicky/dev-tasks": "^2.0.94",
     "@types/sinon": "^10.0.16",
-    "sinon": "^15.2.0",
+    "sinon": "^16.0.0",
     "test-each": "^6.0.1"
   },
   "peerDependencies": {
