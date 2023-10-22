@@ -2,7 +2,7 @@ import process from 'node:process'
 
 import test from 'ava'
 import ModernError from 'modern-errors'
-import sinon, { type SinonStub } from 'sinon'
+import { stub, type SinonStub } from 'sinon'
 import { each } from 'test-each'
 
 import modernErrorsCli, { type Options } from 'modern-errors-cli'
@@ -10,8 +10,8 @@ import modernErrorsCli, { type Options } from 'modern-errors-cli'
 type ConsoleError = SinonStub<[string]>
 
 // eslint-disable-next-line no-restricted-globals
-const consoleError = sinon.stub(console, 'error') as ConsoleError
-const processExit = sinon.stub(process, 'exit')
+const consoleError = stub(console, 'error') as ConsoleError
+const processExit = stub(process, 'exit')
 
 // `handle-cli-error` use global variables `process.exitCode`, `process.exit()`
 // and `console.error()` so we need to mock them.
