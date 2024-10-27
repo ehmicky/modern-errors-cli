@@ -7,6 +7,7 @@ import type { Info, Plugin } from 'modern-errors'
 export type { Options }
 
 const getOptions = (options: Options = {}) => {
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   validateOptions(options)
 
   if (options.classes !== undefined) {
