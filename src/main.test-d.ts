@@ -1,5 +1,5 @@
 import ModernError from 'modern-errors'
-import { expectType, expectAssignable, expectNotAssignable } from 'tsd'
+import { expectAssignable, expectNotAssignable, expectType } from 'tsd'
 
 import modernErrorsCli, { type Options } from 'modern-errors-cli'
 
