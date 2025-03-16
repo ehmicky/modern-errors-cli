@@ -61,7 +61,7 @@
     "@ehmicky/eslint-config": "^20.0.30",
     "@ehmicky/prettier-config": "^1.0.5",
     "@types/sinon": "^17.0.4",
-    "sinon": "^19.0.2",
+    "sinon": "^19.0.4",
     "test-each": "^7.0.0"
   },
   "peerDependencies": {
