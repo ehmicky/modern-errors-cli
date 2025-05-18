@@ -37,7 +37,6 @@ const getOptions = (options: Options = {}) => {
  * cliMain()
  * ```
  */
-// Stack traces and error properties are displayed by default.
 const exit = ({ error, options }: Info<Options>['instanceMethods']) => {
   handleCliError(error, options)
 }
