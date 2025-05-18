@@ -38,11 +38,8 @@ const getOptions = (options: Options = {}) => {
  * ```
  */
 // Stack traces and error properties are displayed by default.
-const exit = ({
-  error,
-  options: { stack = true, ...options },
-}: Info<Options>['instanceMethods']) => {
-  handleCliError(error, { ...options, stack })
+const exit = ({ error, options }: Info<Options>['instanceMethods']) => {
+  handleCliError(error, options)
 }
 
 /**
