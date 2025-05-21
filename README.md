@@ -213,6 +213,8 @@ BaseError.exit(error, options)
   error messages and stacks
 - [`modern-errors`](https://github.com/ehmicky/modern-errors): Handle errors in
   a simple, stable, consistent way
+- [`modern-errors-beautiful`](https://github.com/ehmicky/modern-errors-beautiful):
+  Prettify errors messages and stacks
 - [`modern-errors-process`](https://github.com/ehmicky/modern-errors-process):
   Handle process errors
 - [`modern-errors-bugs`](https://github.com/ehmicky/modern-errors-bugs): Print
