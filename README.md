@@ -209,6 +209,8 @@ BaseError.exit(error, options)
 
 - [`handle-cli-error`](https://github.com/ehmicky/handle-cli-error): 💣 Error
   handler for CLI applications 💥
+- [`beautiful-error`](https://github.com/ehmicky/beautiful-error): Prettify
+  error messages and stacks
 - [`modern-errors`](https://github.com/ehmicky/modern-errors): Handle errors in
   a simple, stable, consistent way
 - [`modern-errors-process`](https://github.com/ehmicky/modern-errors-process):
