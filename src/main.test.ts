@@ -43,7 +43,13 @@ const BaseError = ModernError.subclass('BaseError', {
 const error = new BaseError(message)
 
 each(
-  [true, { timeout: 'true' }, { unknown: true }, { classes: {} }],
+  [
+    true,
+    { timeout: 'true' },
+    { log: true },
+    { unknown: true },
+    { classes: {} },
+  ],
   ({ title }, options) => {
     test(`Options are validated | ${title}`, (t) => {
       // @ts-expect-error Type checking should fail due to invalid options

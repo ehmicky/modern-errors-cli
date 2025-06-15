@@ -1,3 +1,9 @@
+# 5.2.0
+
+## Features
+
+- Add option [`log`](README.md#-log) to customize printing the error message.
+
 # 5.1.0
 
 ## Features

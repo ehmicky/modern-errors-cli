@@ -22,7 +22,7 @@ exits the process.
 - 🚒 [Graceful exit](#-timeout)
 - ⛑️ [Normalize](https://github.com/ehmicky/normalize-exception) invalid errors
 - 🔕 Log verbosity: [message](#-silent), [stack](#-stack), [properties](#-props)
-- 🚨 Custom [exit code](#-exitcode)
+- 🚨 Custom [exit code](#-exitcode) and [log function](#-log)
 - 💥 Exception-safe
 
 # Screenshot
@@ -175,6 +175,13 @@ Special values:
 - `0`: Exits right away, without waiting for ongoing tasks
 - `Number.POSITIVE_INFINITY`: Waits for ongoing tasks forever, without timing
   out
+
+#### 📜 log
+
+_Type_: `(string) => void`\
+_Default_: `console.error`
+
+Function used to print the error message.
 
 ## Configuration
 
