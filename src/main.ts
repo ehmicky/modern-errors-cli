@@ -26,7 +26,7 @@ const getOptions = (options: Options = {}) => {
     throw new TypeError('The "custom" option must not be defined.')
   }
 
-  return options
+  return { ...options, custom: 'pretty' }
 }
 
 /**
@@ -53,7 +53,7 @@ const exit = ({ error, options }: Info<Options>['instanceMethods']) => {
   removePretty(error)
 
   try {
-    handleCliError(error, { ...options, custom: 'pretty' })
+    handleCliError(error, options)
   } finally {
     restorePretty(error)
   }
