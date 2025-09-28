@@ -60,6 +60,7 @@ each(
     { log: true },
     { unknown: true },
     { classes: {} },
+    { custom: 'pretty' },
   ],
   ({ title }, options) => {
     test(`Options are validated | ${title}`, (t) => {
@@ -112,4 +113,27 @@ test.serial('Can use together with modern-errors-beautiful', (t) => {
     errorExit(bothError, { stack: false }, BothError).consoleArg,
     `${figures.cross} BothError: test`,
   )
+})
+
+test.serial('Can use aggregate errors', (t) => {
+  const { consoleArg } = errorExit(
+    new BaseError('test', {
+      cli: { icon: 'warning' },
+      errors: [new BaseError('inner', { cli: { icon: 'info' } })],
+    }),
+  )
+  t.true(consoleArg.includes(`${figures.warning} BaseError: test`))
+  t.true(consoleArg.includes(`${figures.info} BaseError: inner`))
+})
+
+test('Returns beautified errors, static', (t) => {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
+  const prettyMessage: string = BaseError.pretty(error)
+  t.true(prettyMessage.includes(`${figures.cross} BaseError: test`))
+})
+
+test('Returns beautified errors, instance', (t) => {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
+  const prettyMessage: string = error.pretty()
+  t.true(prettyMessage.includes(`${figures.cross} BaseError: test`))
 })

@@ -61,6 +61,7 @@ const exit = ({ error, options }: Info<Options>['instanceMethods']) => {
 
 // Uses `.pretty()` to avoid conflict with `modern-errors-beautiful`.
 // Temporarily unsets `error.pretty()` to avoid recursion.
+// This is a workaround to support nested errors and is not documented.
 const pretty = ({
   error,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
