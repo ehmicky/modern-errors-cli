@@ -78,7 +78,8 @@ test.serial('"exitCode" defaults to 1', (t) => {
 })
 
 test.serial('Can pass "stack"', (t) => {
-  t.false(errorExit(error, { stack: false }).consoleArg.includes('at '))
+  const { consoleArg } = errorExit(error, { stack: false })
+  t.false(consoleArg.includes('at '))
 })
 
 test.serial('"stack" defaults to true', (t) => {

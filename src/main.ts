@@ -3,7 +3,7 @@ import handleCliError, {
   validateOptions,
   type Options as HandleCliErrorOptions,
 } from 'handle-cli-error'
-import type { Info, Plugin } from 'modern-errors'
+import type { ErrorInstance, Info, Plugin } from 'modern-errors'
 
 /**
  * Options of `modern-errors-cli`
@@ -50,7 +50,13 @@ const getOptions = (options: Options = {}) => {
  * ```
  */
 const exit = ({ error, options }: Info<Options>['instanceMethods']) => {
-  handleCliError(error, { ...options, custom: 'pretty' })
+  removePretty(error)
+
+  try {
+    handleCliError(error, { ...options, custom: 'pretty' })
+  } finally {
+    restorePretty(error)
+  }
 }
 
 // Uses `.pretty()` to avoid conflict with `modern-errors-beautiful`.
@@ -60,6 +66,16 @@ const pretty = ({
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   options: { exitCode, silent, timeout, log, ...beautifulErrorOptions },
 }: Info<Options>['instanceMethods']) => {
+  removePretty(error)
+
+  try {
+    return beautifulError(error, beautifulErrorOptions)
+  } finally {
+    restorePretty(error)
+  }
+}
+
+const removePretty = (error: ErrorInstance) => {
   // eslint-disable-next-line fp/no-mutating-methods
   Object.defineProperty(error, 'pretty', {
     value: undefined,
@@ -67,13 +83,11 @@ const pretty = ({
     writable: true,
     configurable: true,
   })
+}
 
-  try {
-    return beautifulError(error, beautifulErrorOptions)
-  } finally {
-    // eslint-disable-next-line fp/no-delete
-    delete (error as Error & { pretty?: undefined }).pretty
-  }
+const restorePretty = (error: ErrorInstance & { pretty?: undefined }) => {
+  // eslint-disable-next-line fp/no-delete
+  delete error.pretty
 }
 
 /**
