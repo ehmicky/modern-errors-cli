@@ -34,6 +34,7 @@ ModernError.subclass('TestError', {
 })
 BaseError.exit(error, { silent: true })
 expectAssignable<Options>({ silent: true })
+
 ModernError.subclass('TestError', {
   plugins: [modernErrorsCli],
   // @ts-expect-error
@@ -42,3 +43,37 @@ ModernError.subclass('TestError', {
 // @ts-expect-error
 BaseError.exit(error, { silent: 'true' })
 expectNotAssignable<Options>({ silent: 'true' })
+
+ModernError.subclass('TestError', {
+  plugins: [modernErrorsCli],
+  cli: { cause: true },
+})
+BaseError.exit(error, { cause: true })
+expectAssignable<Options>({ cause: true })
+
+ModernError.subclass('TestError', {
+  plugins: [modernErrorsCli],
+  // @ts-expect-error
+  cli: { cause: 'true' },
+})
+// @ts-expect-error
+BaseError.exit(error, { cause: 'true' })
+expectNotAssignable<Options>({ cause: 'true' })
+
+ModernError.subclass('TestError', {
+  plugins: [modernErrorsCli],
+  // @ts-expect-error
+  cli: { classes: {} },
+})
+// @ts-expect-error
+BaseError.exit(error, { classes: {} })
+expectNotAssignable<Options>({ classes: {} })
+
+ModernError.subclass('TestError', {
+  plugins: [modernErrorsCli],
+  // @ts-expect-error
+  cli: { custom: 'pretty' },
+})
+// @ts-expect-error
+BaseError.exit(error, { custom: 'pretty' })
+expectNotAssignable<Options>({ custom: 'pretty' })
