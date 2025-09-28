@@ -1,7 +1,9 @@
 import process from 'node:process'
 
 import test from 'ava'
+import figures from 'figures'
 import ModernError from 'modern-errors'
+import modernErrorsBeautiful from 'modern-errors-beautiful'
 import { stub, type SinonStub } from 'sinon'
 import { each } from 'test-each'
 
@@ -16,12 +18,16 @@ const processExit = stub(process, 'exit')
 // `handle-cli-error` use global variables `process.exitCode`, `process.exit()`
 // and `console.error()` so we need to mock them.
 // It also relies on timeout, which we need to mock as well.
-const errorExit = (errorArg: Error, options?: Options) => {
+const errorExit = (
+  errorArg: Error,
+  options?: Options,
+  ErrorClass = BaseError,
+) => {
   try {
     consoleError.resetHistory()
     processExit.resetHistory()
 
-    BaseError.exit(errorArg, options)
+    ErrorClass.exit(errorArg, options)
 
     const consoleArg = getStubArg(consoleError)
     return { consoleArg, exitCode: process.exitCode }
@@ -41,6 +47,11 @@ const BaseError = ModernError.subclass('BaseError', {
   cli: { timeout: 0 },
 })
 const error = new BaseError(message)
+
+const BothError = ModernError.subclass('BothError', {
+  plugins: [modernErrorsCli, modernErrorsBeautiful],
+  cli: { timeout: 0 },
+})
 
 each(
   [
@@ -78,8 +89,7 @@ test.serial('"exitCode" defaults to 1', (t) => {
 })
 
 test.serial('Can pass "stack"', (t) => {
-  const { consoleArg } = errorExit(error, { stack: false })
-  t.false(consoleArg.includes('at '))
+  t.false(errorExit(error, { stack: false }).consoleArg.includes('at '))
 })
 
 test.serial('"stack" defaults to true', (t) => {
@@ -88,4 +98,18 @@ test.serial('"stack" defaults to true', (t) => {
 
 test.serial('Can pass any options', (t) => {
   t.is(errorExit(error, { silent: true }).consoleArg, '')
+})
+
+test.serial('Can use together with modern-errors-beautiful', (t) => {
+  const bothError = new BothError('test')
+  t.is(
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+    bothError.beautiful({ stack: false }),
+    `${figures.cross} BothError: test`,
+  )
+  t.is(
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+    errorExit(bothError, { stack: false }, BothError).consoleArg,
+    `${figures.cross} BothError: test`,
+  )
 })
