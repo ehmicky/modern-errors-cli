@@ -54,7 +54,7 @@
     "lib": "src"
   },
   "dependencies": {
-    "handle-cli-error": "^5.3.0"
+    "handle-cli-error": "^6.0.0"
   },
   "devDependencies": {
     "@ehmicky/dev-tasks": "^3.0.34",
