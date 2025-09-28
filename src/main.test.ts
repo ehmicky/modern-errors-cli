@@ -50,7 +50,7 @@ const BothError = ModernError.subclass('BothError', {
   plugins: [modernErrorsCli, modernErrorsBeautiful],
   cli: { timeout: 0 },
 })
-const ExitCodeError = BaseError.subclass('ExitCodeError', {
+const WarningError = BaseError.subclass('WarningError', {
   cli: { icon: 'warning' },
 })
 const DatabaseError = BaseError.subclass('DatabaseError', {
@@ -58,8 +58,6 @@ const DatabaseError = BaseError.subclass('DatabaseError', {
 })
 
 const error = new BaseError(message)
-const innerError = new DatabaseError('inner')
-const outerError = new ExitCodeError('test', { errors: [innerError] })
 
 each(
   [
@@ -136,9 +134,9 @@ test.serial('Can use aggregate errors, instance options', (t) => {
 
 test.serial('Can use aggregate errors, class options', (t) => {
   const { consoleArg } = errorExit(
-    new ExitCodeError('test', { errors: [new DatabaseError('inner')] }),
+    new WarningError('test', { errors: [new DatabaseError('inner')] }),
   )
-  t.true(consoleArg.includes(`${figures.warning} ExitCodeError: test`))
+  t.true(consoleArg.includes(`${figures.warning} WarningError: test`))
   t.true(consoleArg.includes(`${figures.info} DatabaseError: inner`))
 })
 
