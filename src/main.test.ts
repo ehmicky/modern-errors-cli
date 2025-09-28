@@ -141,13 +141,11 @@ test.serial('Can use aggregate errors, class options', (t) => {
 })
 
 test('Returns beautified errors, static', (t) => {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
   const prettyMessage: string = BaseError.pretty(error)
   t.true(prettyMessage.includes(`${figures.cross} BaseError: test`))
 })
 
 test('Returns beautified errors, instance', (t) => {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
   const prettyMessage: string = error.pretty()
   t.true(prettyMessage.includes(`${figures.cross} BaseError: test`))
 })
